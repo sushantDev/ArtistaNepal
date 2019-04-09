@@ -73,6 +73,13 @@ class BackendMenuCreator
                 'icon'  => 'md md-event',
                 'title' => 'Schedule'
             ]);
+
+            array_push($menu, [
+                'class' => false,
+                'route' => route('contact.index'),
+                'icon'  => 'md md-email',
+                'title' => 'Email'
+            ]);
         }
 
         if (auth()->user()->hasRole('artist')) {

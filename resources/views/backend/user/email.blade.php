@@ -29,6 +29,18 @@
                             <input type="text" class="form-control" id="Subject1" name="subject">
                             <label for="Subject1">Subject</label>
                         </div><!--end .form-group -->
+                        <div class="form-group floating-label">
+                            <input type="text" class="form-control" id="Price1" name="price">
+                            <label for="Price1">Price</label>
+                        </div><!--end .form-group -->
+                        <div class="form-group floating-label">
+                            <input type="text" class="form-control" id="Venue1" name="venue">
+                            <label for="Venue1">Venue</label>
+                        </div><!--end .form-group -->
+                        <div class="form-group floating-label">
+                            <input type="date" class="form-control" id="Date1" name="date">
+                            <label for="Date1">Date</label>
+                        </div><!--end .form-group -->
                         <div class="form-group">
                             <textarea id="my-editor" required name="message"></textarea>
                         </div><!--end .form-group -->

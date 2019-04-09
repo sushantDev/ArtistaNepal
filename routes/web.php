@@ -60,6 +60,17 @@ Route::group([ 'middleware' => 'auth', 'prefix' => 'admin' ], function () {
 
     /*
     |--------------------------------------------------------------------------
+    | Contact
+    |--------------------------------------------------------------------------
+    */
+    Route::group([ 'middleware' => [ 'role:admin|artist|organiser' ], 'prefix' => 'contact', 'as' => 'contact.' ], function () {
+        Route::get('', 'ContactController@index')->name('index');
+        Route::get('{contact}', 'ContactController@show')->name('show');
+        Route::delete('{contact}', 'ContactController@destroy')->name('destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
     | Event
     |--------------------------------------------------------------------------
     */

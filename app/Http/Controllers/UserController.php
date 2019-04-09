@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
+use App\Http\Requests\StoreContact;
 use App\Http\Requests\StoreUser;
 use App\Notifications\ContactReceived;
 use App\Notifications\ContactSubmitted;
@@ -141,14 +143,17 @@ class UserController extends Controller
         return view('backend.user.email', compact('user'));
     }
 
-    public function notify(Request $request)
+    public function notify(StoreContact $request)
     {
         $name    = Auth::user()->name;
-        $recEmail = $request->get('email');
-        $email   = Auth::user()->email;
+        $email = $request->get('email');
         $message = $request->get('message');
 
-        Notification::route('mail', $recEmail)->notify(new ContactSubmitted($name, $email, $message));
+        DB::transaction(function () use ($request) {
+            Contact::create($request->data());
+        });
+
+        Notification::route('mail', $email)->notify(new ContactSubmitted($name, $email, $message));
 
         return redirect()->back()->withSuccess('Congrats!! You have successfully sent your message.');
     }
