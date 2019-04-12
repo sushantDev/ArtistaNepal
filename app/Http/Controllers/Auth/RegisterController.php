@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\StoreRegister;
+use App\Http\Requests\StoreUser;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Spatie\Permission\Models\Role;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -68,5 +74,31 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $roles = Role::pluck('name', 'name')->map(function ($item) {
+            return strtoupper($item);
+        });
+
+        return view('auth.register', compact('roles'));
+    }
+
+    public function register(StoreUser $request)
+    {
+        DB::transaction(function () use ($request) {
+            $data = $request->data();
+
+            $user = User::create($data);
+
+            $this->uploadRequestImage($request, $user);
+
+            $user->assignRole($request->get('role'));
+
+            $this->guard()->login($user);
+        });
+
+        return redirect()->route('home')->withSuccess('Thank you for registering in our application. Hope you have a great time!');
     }
 }

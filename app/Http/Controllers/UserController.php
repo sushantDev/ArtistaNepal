@@ -117,7 +117,7 @@ class UserController extends Controller
         auth()->user()->follow($user);
 
         return redirect()
-            ->route('user.index')
+            ->back()
             ->withSuccess(trans('message.follow_success', [ 'entity' => 'User' ]));
     }
 
@@ -130,7 +130,7 @@ class UserController extends Controller
         auth()->user()->unfollow($user);
 
         return redirect()
-            ->route('user.index')
+            ->back()
             ->withSuccess(trans('message.un_follow_success', [ 'entity' => 'User' ]));
     }
 

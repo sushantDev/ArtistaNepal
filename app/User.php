@@ -18,7 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'username'
+        'name',
+        'email',
+        'password',
+        'username'
     ];
 
     /**
@@ -27,34 +30,37 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
-  public function getRouteKeyName()
-  {
-    return 'username';
-  }
-
-  /**
-   * @return \Illuminate\Database\Eloquent\Relations\MorphOne
-   */
-  public function image()
-  {
-    return $this->morphOne(Image::class, 'imageable');
-  }
-
-  /**
-   * @param array $options
-   * @return bool|null|void
-   * @throws \Exception
-   */
-  public function delete(array $options = [])
-  {
-    if ($this->image)
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
     {
-      $this->image->delete();
+        return 'username';
     }
 
-    return parent::delete($options);
-  }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    /**
+     * @param array $options
+     * @return bool|null|void
+     * @throws \Exception
+     */
+    public function delete(array $options = [])
+    {
+        if ($this->image) {
+            $this->image->delete();
+        }
+
+        return parent::delete($options);
+    }
 }

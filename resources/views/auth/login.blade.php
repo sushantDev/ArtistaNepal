@@ -51,6 +51,9 @@
 
   <footer class="text-center">
     <p>
+      <a href="{{ route('register') }}">Register</a>
+    </p><br>
+    <p>
       Copyright &#183; {{ setting('title') }} &#183; {{date('Y')}}
     </p>
   </footer>

@@ -22,7 +22,7 @@
             <ul class="header-nav header-nav-profile" style="margin-top: -10px;">
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle ink-reaction" data-toggle="dropdown">
-                        <img src="{{ user_avatar(40) }}">
+                        <img src="{{ auth()->user()->image && file_exists(auth()->user()->image->path) ? asset(auth()->user()->image->thumbnail(80,80)) : '\img\avatar.png' }}">
                         <span class="profile-info">
 						{{ ucwords(auth()->user()->name) }}
 						<small>{{ ucwords(auth()->user()->roles->first()->name) }}</small>

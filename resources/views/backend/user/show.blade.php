@@ -13,7 +13,7 @@
             <div class="row margin-bottom-xxl">
                 <div class="col-md-3 col-xs-5">
                     <div class="row text-center">
-                        <img class="img-circle border-white border-xl auto-width preview" src="{{ user_avatar(140)  }}" alt="user_avatar" style="width: 140px;" />
+                        <img class="img-circle border-white border-xl auto-width preview" src="{{ $user->image && file_exists($user->image->path) ? asset($user->image->thumbnail(140,140)) : '\img\avatar.png' }}" alt="user_avatar" style="width: 140px;" />
                     </div>
                 </div>
                 <div class="col-md-9 col-xs-7">

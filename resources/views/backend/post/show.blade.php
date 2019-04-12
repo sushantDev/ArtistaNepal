@@ -59,7 +59,7 @@
                                         <br>
                                         <div class="well clearfix">
                                             <h4>About the author: {{ $post->author->name }}</h4>
-                                            <img class="height-3 pull-right img-circle" src="{{ user_avatar(140)  }}" alt="{{ $post->author->name }}">
+                                            <img class="height-3 pull-right img-circle" src="{{ $user->image && file_exists($user->image->path) ? asset($user->image->thumbnail(140,140)) : '\img\avatar.png' }}" alt="{{ $post->author->name }}">
                                             <p>Email: {{ $post->author->email }}</p>
                                             <p>Username: {{ $post->author->username }}</p>
                                         </div>
