@@ -35,12 +35,14 @@
                                 My profile
                             </a>
                         </li>
-                        <li>
-                            <a href="{{ route('setting.index') }}">
-                                <i class="md md-settings"></i>
-                                Settings
-                            </a>
-                        </li>
+                        @if(auth()->user()->roles->first()->name == "admin")
+                            <li>
+                                <a href="{{ route('setting.index') }}">
+                                    <i class="md md-settings"></i>
+                                    Settings
+                                </a>
+                            </li>
+                        @endif
                         <li>
                             <a href="{{url('/logout')}}">
                                 <i class="md md-settings-power text-danger"></i>

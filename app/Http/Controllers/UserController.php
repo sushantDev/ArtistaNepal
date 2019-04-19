@@ -148,12 +148,15 @@ class UserController extends Controller
         $name    = Auth::user()->name;
         $email = $request->get('email');
         $message = $request->get('message');
+        $price = $request->get('price');
+        $venue = $request->get('venue');
+        $date = $request->get('date');
 
         DB::transaction(function () use ($request) {
             Contact::create($request->data());
         });
 
-        Notification::route('mail', $email)->notify(new ContactSubmitted($name, $email, $message));
+        Notification::route('mail', $email)->notify(new ContactSubmitted($name, $email, $message, $price, $venue, $date));
 
         return redirect()->back()->withSuccess('Congrats!! You have successfully sent your message.');
     }

@@ -54,7 +54,7 @@ class PostController extends Controller
             }
         });
 
-        return redirect()->route('backend.post.index')->withSuccess(trans('messages.create_success', [ 'entity' => 'Post' ]));
+        return redirect()->route('post.index')->withSuccess(trans('messages.create_success', [ 'entity' => 'Post' ]));
     }
 
     /**

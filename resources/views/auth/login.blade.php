@@ -50,9 +50,9 @@
   <!-- END LOGIN SECTION -->
 
   <footer class="text-center">
-    <p>
+    <h3>
       <a href="{{ route('register') }}">Register</a>
-    </p><br>
+    </h3><br>
     <p>
       Copyright &#183; {{ setting('title') }} &#183; {{date('Y')}}
     </p>

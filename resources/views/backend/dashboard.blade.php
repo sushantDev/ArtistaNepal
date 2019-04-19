@@ -21,7 +21,7 @@
                                     <div class="col-md-10">
                                         <h2>{{ $post->title }}</h2>
                                         <div class="opacity-75">{{ $post->created_at->diffForHumans() }} by
-                                            <a href="{{ route('user.show', $post->author->username) }}">{{ $post->author->name }}</a>
+                                            <a href="{{ route('user.show', $post->author->username) }}">{{ $post->author->name }}</a> {{ strtoupper($post->author->roles->first()->name) }}
                                         </div>
                                     </div>
                                 </div>

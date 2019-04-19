@@ -47,8 +47,10 @@
                                         @else
                                             <a class="btn btn-primary" href="{{ route('user.follow', $user->username) }}">Follow</a>
                                         @endif
-                                        <a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a>
-                                        <a href="{{ route('user.contact', $user) }}" class="btn btn-primary">Contact</a>
+                                        {{--<a href="{{ route('user.edit', $user) }}" class="btn btn-primary">Edit</a>--}}
+                                        @if(auth()->user()->roles->first()->name != "user")
+                                            <a href="{{ route('user.contact', $user) }}" class="btn btn-primary">Contact</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="card-body">
